@@ -1,0 +1,3313 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>호호불면 우정이 커지는 맛있는 육개장</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root {
+      --red: #e51b23;
+      --red-dark: #a70f17;
+      --yellow: #ffd43b;
+      --cream: #fff6df;
+      --ink: #111;
+      --muted: #6d625e;
+      --line: #e8ddd7;
+      --stage: #f43b35;
+      --brown: #422017;
+      --soft: #fff8ee;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      color: var(--ink);
+      background: #fff;
+      font-family: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Arial, sans-serif;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+      border: 0;
+    }
+
+    .mall-header {
+      position: relative;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, .96);
+      border-top: 1px solid #efe5dc;
+      border-bottom: 1px solid #eee;
+    }
+
+    .header-row {
+      width: min(1040px, calc(100% - 28px));
+      min-height: 58px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 150px 1fr 180px;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo {
+      color: var(--red);
+      font-size: 24px;
+      font-weight: 1000;
+      letter-spacing: 0;
+      text-transform: lowercase;
+    }
+
+    .logo::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 4px;
+      border-radius: 50%;
+      background: var(--red);
+      vertical-align: 8px;
+    }
+
+    .search {
+      position: relative;
+      width: min(360px, 100%);
+      justify-self: center;
+    }
+
+    .search input {
+      width: 100%;
+      height: 38px;
+      padding: 0 46px 0 18px;
+      border: 2px solid var(--red);
+      border-radius: 999px;
+      outline: 0;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .search span {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      color: var(--red);
+      font-size: 20px;
+      transform: translateY(-50%);
+    }
+
+    .icons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 18px;
+      font-size: 24px;
+    }
+
+    .nav-row {
+      width: min(1040px, calc(100% - 28px));
+      min-height: 48px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(18px, 4vw, 50px);
+      color: #191919;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .nav-row .category {
+      margin-right: auto;
+    }
+
+    .coupon {
+      margin-left: auto;
+      padding: 9px 14px;
+      border-radius: 999px;
+      color: #5b3029;
+      background: #fff4f4;
+      font-size: 12px;
+    }
+
+    .page {
+      min-height: calc(100vh - 106px);
+      background: #fff;
+    }
+
+    .landing-image-section {
+      width: min(540px, 100%);
+      margin: 0 auto;
+      background: #fff;
+    }
+
+    .landing-image-section img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    main.page > .footer {
+      width: min(540px, 100%);
+      margin: 0 auto;
+    }
+
+    .event-wrap > .event-top {
+      display: none !important;
+      height: 0 !important;
+    }
+
+    .event-wrap {
+      width: min(540px, 100%);
+      margin: 0 auto;
+      background: var(--stage);
+      border-left: 1px solid #f0e7df;
+      border-right: 1px solid #f0e7df;
+    }
+
+    .event-top {
+      position: relative;
+      height: 126px;
+      overflow: hidden;
+      background: #f72832;
+    }
+
+    .event-top::before {
+      content: "HOHO YUKGAEJANG AR";
+      position: absolute;
+      left: 26px;
+      bottom: 18px;
+      z-index: 1;
+      color: rgba(255, 255, 255, .92);
+      font-size: 12px;
+      font-weight: 1000;
+      letter-spacing: .08em;
+    }
+
+    .event-top::after {
+      content: "";
+      position: absolute;
+      opacity: .16;
+      border: 5px solid #fff;
+      transform: rotate(-12deg);
+    }
+
+    .event-top::after {
+      right: 26px;
+      top: 32px;
+      width: 90px;
+      height: 46px;
+      border-left: 0;
+      border-right: 0;
+      transform: rotate(16deg);
+    }
+
+    .pack {
+      position: absolute;
+      left: 50%;
+      top: -24px;
+      width: 272px;
+      height: 104px;
+      border-radius: 14px;
+      background:
+        linear-gradient(105deg, #ffd962 0 16%, #fff 16% 54%, #f3a436 54% 100%),
+        linear-gradient(180deg, rgba(255,255,255,.45), transparent);
+      border: 2px solid rgba(255, 255, 255, .8);
+      transform: translateX(-50%) rotate(-8deg);
+    }
+
+    .pack::before {
+      content: "육개장 사발면";
+      position: absolute;
+      left: 22px;
+      top: 36px;
+      color: var(--red);
+      font-size: 28px;
+      font-weight: 1000;
+      white-space: nowrap;
+    }
+
+    .pack::after {
+      content: "";
+      position: absolute;
+      right: -24px;
+      bottom: -34px;
+      width: 82px;
+      height: 82px;
+      border: 5px solid #fff;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, #d84518 0 16%, #f6aa2d 17% 24%, #682f18 25% 32%, #f4cf6a 33% 43%, #fff 44%);
+    }
+
+    .demo-stage {
+      position: relative;
+      min-height: 920px;
+      overflow: hidden;
+      background: #fff7ee;
+    }
+
+    .map-bg {
+      position: absolute;
+      inset: 0;
+      opacity: .38;
+      background:
+        radial-gradient(circle at 22% 18%, #ffc857 0 46px, transparent 47px),
+        radial-gradient(circle at 78% 20%, #1e1e1e 0 34px, transparent 35px),
+        radial-gradient(circle at 28% 64%, #ed1b24 0 28px, transparent 29px),
+        radial-gradient(circle at 82% 66%, #f7c42e 0 42px, transparent 43px),
+        linear-gradient(90deg, transparent 0 47%, rgba(255,255,255,.5) 47% 53%, transparent 53%),
+        linear-gradient(90deg, transparent 0 18%, rgba(0,0,0,.07) 18% 22%, transparent 22% 62%, rgba(0,0,0,.05) 62% 68%, transparent 68%),
+        linear-gradient(160deg, transparent 0 38%, rgba(255,255,255,.9) 38% 42%, transparent 42%);
+    }
+
+    .map-label {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 36px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: #2e2e2e;
+      background: rgba(255, 255, 255, .78);
+      font-size: 13px;
+      font-weight: 950;
+      border: 1px solid rgba(255, 255, 255, .74);
+      box-shadow: none;
+    }
+
+    .map-label.one {
+      left: 34px;
+      top: 55px;
+    }
+
+    .map-label.two {
+      right: 30px;
+      top: 210px;
+    }
+
+    .map-label.three {
+      left: 36px;
+      bottom: 210px;
+    }
+
+    .map-label.four {
+      right: 36px;
+      bottom: 120px;
+    }
+
+    .step-badge {
+      position: absolute;
+      left: 42px;
+      top: 48px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 15px;
+      border-radius: 999px;
+      background: rgba(20, 20, 20, .82);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 950;
+      box-shadow: none;
+    }
+
+    .step-badge strong {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      color: #1d1d1d;
+      background: var(--yellow);
+      border-radius: 50%;
+      font-size: 24px;
+    }
+
+    .heart-meter {
+      position: absolute;
+      left: 58px;
+      right: 58px;
+      bottom: 82px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .58);
+      border: 1px solid rgba(17, 17, 17, .08);
+    }
+
+    .heart-meter::before {
+      content: "辛";
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      color: #111;
+      font-weight: 1000;
+      background: var(--yellow);
+      border-radius: 50%;
+    }
+
+    .bar {
+      flex: 1;
+      height: 28px;
+      padding: 5px;
+      border-radius: 999px;
+      background: rgba(16, 16, 16, .82);
+    }
+
+    .bar-fill {
+      width: 18%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--red);
+      transition: width .35s ease;
+    }
+
+    .heart-meter span {
+      position: absolute;
+      left: 98px;
+      top: 58px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #4c4643;
+    }
+
+    .notice {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      min-height: 70px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: #292929;
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .notice span {
+      border-bottom: 1px solid rgba(255, 255, 255, .65);
+      padding-bottom: 6px;
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      display: none;
+      place-items: center;
+      padding: 34px 30px 94px;
+      text-align: center;
+    }
+
+    .screen.active {
+      display: grid;
+    }
+
+    .dim {
+      background: rgba(0, 0, 0, .72);
+      color: #fff;
+    }
+
+    .card {
+      width: min(420px, 100%);
+      padding: 28px 24px;
+      border-radius: 22px;
+      background: #fffdf8;
+      color: var(--ink);
+      border: 1px solid #eadfd8;
+      box-shadow: none;
+    }
+
+    .transparent-card {
+      width: min(430px, 100%);
+      color: #fff;
+      padding-top: 12px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 8px 14px;
+      margin-bottom: 16px;
+      border-radius: 999px;
+      color: var(--red);
+      background: #fff;
+      font-size: 14px;
+      font-weight: 950;
+      border: 1px solid rgba(229, 27, 35, .14);
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+      word-break: keep-all;
+    }
+
+    h1 {
+      font-size: 42px;
+      line-height: 1.12;
+      font-weight: 1000;
+      letter-spacing: 0;
+    }
+
+    h1 .hot {
+      color: #ff3138;
+    }
+
+    h2 {
+      color: var(--red);
+      font-size: 31px;
+      line-height: 1.12;
+      font-weight: 1000;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin-top: 14px;
+      color: rgba(255, 255, 255, .86);
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 750;
+    }
+
+    .card .lead {
+      color: var(--muted);
+    }
+
+    .reward {
+      margin: 22px auto 0;
+      padding: 18px 14px;
+      border-radius: 16px;
+      color: var(--ink);
+      background: #fff;
+      font-weight: 1000;
+      border: 1px solid rgba(255, 255, 255, .8);
+    }
+
+    .reward small {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .reward strong {
+      font-size: 28px;
+    }
+
+    .actions {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn {
+      min-height: 56px;
+      border-radius: 14px;
+      color: #fff;
+      background: var(--red);
+      font-size: 19px;
+      font-weight: 1000;
+      box-shadow: none;
+      transition: background .16s ease, transform .16s ease;
+    }
+
+    .btn:hover {
+      background: var(--red-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn.yellow {
+      color: #151515;
+      background: var(--yellow);
+    }
+
+    .btn.yellow:hover {
+      background: #f4c928;
+    }
+
+    .btn.dark {
+      background: #1d1d1d;
+    }
+
+    .btn.light {
+      color: var(--red);
+      background: #fff;
+      border: 2px solid #f0b1b1;
+      box-shadow: none;
+    }
+
+    .btn.small {
+      min-height: 48px;
+      border-radius: 12px;
+      font-size: 16px;
+    }
+
+    .phone {
+      position: relative;
+      width: min(350px, 100%);
+      height: 560px;
+      margin: 0 auto;
+      overflow: hidden;
+      border: 5px solid #17110f;
+      border-radius: 38px;
+      background: #2f2f2c;
+      box-shadow: none;
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 13px;
+      z-index: 5;
+      width: 86px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .14);
+      transform: translateX(-50%);
+    }
+
+    .camera {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, rgba(255, 255, 255, .18), transparent 32%),
+        radial-gradient(circle at 50% 34%, rgba(255,255,255,.18), transparent 22%),
+        linear-gradient(135deg, #918f87, #57564f);
+    }
+
+    .camera::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, .08), transparent 26%, rgba(0, 0, 0, .16)),
+        radial-gradient(circle at 50% 48%, rgba(255, 255, 255, .16), transparent 32%);
+    }
+
+    .phone-frame {
+      position: absolute;
+      inset: 28px 22px 22px;
+      z-index: 2;
+      border: 3px solid rgba(17, 17, 17, .92);
+      border-radius: 34px 52px 38px 30px;
+      pointer-events: none;
+    }
+
+    .record-btn {
+      position: absolute;
+      left: 50%;
+      top: 78px;
+      z-index: 4;
+      min-width: 152px;
+      min-height: 66px;
+      border: 3px solid #111;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .82);
+      color: #111;
+      font-size: 24px;
+      font-weight: 1000;
+      box-shadow: none;
+      transform: translateX(-50%);
+    }
+
+    .guide-cup {
+      position: absolute;
+      left: 50%;
+      bottom: 88px;
+      z-index: 3;
+      width: 205px;
+      height: 96px;
+      border: 4px dashed rgba(17, 17, 17, .86);
+      border-top: 0;
+      border-radius: 24px 24px 42px 42px;
+      transform: translateX(-50%);
+    }
+
+    .phone-copy {
+      position: absolute;
+      left: 34px;
+      right: 34px;
+      bottom: 58px;
+      z-index: 4;
+      color: #0e0e0e;
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 950;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .58);
+    }
+
+    .rec-ui {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      top: 52px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .rec-ui span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--red);
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .rec-ui span::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff;
+      animation: pulse 1s infinite;
+    }
+
+    .friend {
+      position: absolute;
+      left: 50%;
+      top: 114px;
+      z-index: 4;
+      width: 292px;
+      height: 310px;
+      transform: translateX(-50%);
+      animation: wobble 1.8s infinite ease-in-out;
+    }
+
+    .face {
+      position: absolute;
+      left: 50%;
+      top: 28px;
+      width: 145px;
+      height: 160px;
+      border: 5px solid #111;
+      border-radius: 46% 46% 50% 43%;
+      background:
+        radial-gradient(circle at 50% 76%, rgba(255, 120, 120, .18), transparent 20%),
+        rgba(255, 244, 218, .55);
+      transform: translateX(-50%);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
+    }
+
+    .face::before,
+    .face::after {
+      content: "";
+      position: absolute;
+      top: 80px;
+      width: 30px;
+      height: 18px;
+      border: 4px solid #111;
+      border-top: 0;
+      border-radius: 0 0 18px 18px;
+    }
+
+    .face::before {
+      left: 24px;
+    }
+
+    .face::after {
+      right: 24px;
+    }
+
+    .hair {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 148px;
+      height: 70px;
+      border: 5px solid #111;
+      border-bottom: 0;
+      border-radius: 64px 64px 0 0;
+      transform: translateX(-50%);
+    }
+
+    .cheek {
+      position: absolute;
+      top: 104px;
+      width: 92px;
+      height: 74px;
+      border: 5px solid #111;
+      border-top: 0;
+      border-radius: 0 0 52px 52px;
+    }
+
+    .cheek.left {
+      left: -70px;
+      transform: rotate(12deg);
+    }
+
+    .cheek.right {
+      right: -70px;
+      transform: rotate(-12deg);
+    }
+
+    .mouth {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      width: 38px;
+      height: 44px;
+      border: 5px solid #111;
+      border-radius: 18px 18px 22px 22px;
+      background: linear-gradient(180deg, #efaaa8, #d98988);
+      transform: translateX(-50%);
+    }
+
+    .steam {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 235px;
+      height: 96px;
+      transform: translateX(-50%);
+    }
+
+    .steam i {
+      position: absolute;
+      bottom: 10px;
+      width: 38px;
+      height: 78px;
+      border: 4px solid #bdeaff;
+      border-left: 0;
+      border-bottom: 0;
+      border-radius: 0 42px 0 0;
+      opacity: .9;
+      filter: drop-shadow(0 0 8px rgba(189, 234, 255, .5));
+      animation: steam 1.5s infinite ease-in-out;
+    }
+
+    .steam i:nth-child(1) {
+      left: 20px;
+    }
+
+    .steam i:nth-child(2) {
+      left: 96px;
+      animation-delay: .18s;
+    }
+
+    .steam i:nth-child(3) {
+      right: 26px;
+      animation-delay: .36s;
+    }
+
+    .cup-lid {
+      position: absolute;
+      left: 50%;
+      bottom: 50px;
+      z-index: 4;
+      width: 235px;
+      height: 112px;
+      border: 6px solid #fff;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 58% 44%, rgba(255, 226, 80, .8) 0 4%, transparent 12%),
+        radial-gradient(circle at 30% 56%, #f38b1e 0 10%, transparent 18%),
+        radial-gradient(circle at 64% 45%, #ffc33a 0 9%, transparent 16%),
+        linear-gradient(112deg, #07944b 0 28%, #e51b23 28% 68%, #fff 68% 100%);
+      box-shadow:
+        inset 0 -8px 0 rgba(0, 0, 0, .08),
+        0 11px 0 rgba(0, 0, 0, .18),
+        0 16px 30px rgba(0, 0, 0, .26);
+      transform: translateX(-50%) rotate(-2deg);
+    }
+
+    .cup-lid::before {
+      content: "육개장";
+      position: absolute;
+      left: 50%;
+      top: 35px;
+      color: #fff;
+      font-size: 36px;
+      font-weight: 1000;
+      text-shadow: 3px 3px 0 #b81018;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    .cup-lid::after {
+      content: "사발면";
+      position: absolute;
+      left: 122px;
+      top: 72px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 950;
+    }
+
+    .code-box {
+      display: grid;
+      place-items: center;
+      min-height: 82px;
+      margin: 20px 0 8px;
+      border: 3px dashed rgba(229, 27, 35, .35);
+      border-radius: 16px;
+      color: var(--red);
+      background:
+        linear-gradient(180deg, #fffdf4, #fff1c8);
+      font-size: 42px;
+      font-weight: 1000;
+      letter-spacing: 2px;
+      box-shadow: inset 0 0 0 4px rgba(255, 255, 255, .62);
+    }
+
+    .code-input {
+      width: 100%;
+      height: 66px;
+      margin-top: 22px;
+      border: 3px solid #17110f;
+      border-radius: 14px;
+      color: #111;
+      background: linear-gradient(180deg, #fff, #fffaf0);
+      font-size: 30px;
+      font-weight: 1000;
+      text-align: center;
+      text-transform: uppercase;
+      outline: 0;
+      box-shadow: 0 8px 0 rgba(0, 0, 0, .11);
+    }
+
+    .toast {
+      min-height: 24px;
+      margin-top: 14px;
+      color: var(--red);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .progress-line {
+      position: absolute;
+      left: 50%;
+      top: 18px;
+      z-index: 7;
+      display: flex;
+      gap: 6px;
+      transform: translateX(-50%);
+      padding: 5px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, .12);
+      backdrop-filter: blur(8px);
+    }
+
+    .dot {
+      width: 30px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .44);
+    }
+
+    .dot.on {
+      background: linear-gradient(90deg, #fff, #ffe36c);
+    }
+
+    .footer {
+      min-height: 78px;
+      padding: 20px 22px;
+      color: rgba(255, 255, 255, .7);
+      background: linear-gradient(180deg, #191919, #0f0f0f);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Clean wireframe direction */
+    .mall-header,
+    .event-top,
+    .map-bg,
+    .map-label,
+    .step-badge,
+    .heart-meter,
+    .notice,
+    .footer {
+      display: none;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 28px 0;
+      background: #d9d9d9;
+    }
+
+    .event-wrap {
+      width: min(390px, 100%);
+      min-height: calc(100vh - 56px);
+      border: 0;
+      background: #fff;
+    }
+
+    .demo-stage {
+      min-height: calc(100vh - 56px);
+      background: #fff;
+    }
+
+    .screen {
+      padding: 34px 20px;
+      align-items: center;
+    }
+
+    .screen.dim {
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .transparent-card,
+    .card {
+      width: 100%;
+      padding: 0 2px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .card {
+      display: grid;
+      justify-items: center;
+      gap: 16px;
+    }
+
+    .eyebrow,
+    .reward,
+    .progress-line {
+      display: none;
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1.06;
+      font-weight: 700;
+      color: #111;
+    }
+
+    h1 .small-line {
+      font-size: 27px;
+      font-weight: 650;
+    }
+
+    h1 .big-line {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 46px;
+      font-weight: 1000;
+      letter-spacing: -1px;
+      transform: rotate(-2deg);
+    }
+
+    h2 {
+      color: #111;
+      font-size: 23px;
+      line-height: 1.28;
+      font-weight: 900;
+    }
+
+    .screen[data-screen="shootIntro"] h2,
+    .screen[data-screen="recording"] h2 {
+      color: var(--red);
+      font-size: 22px;
+    }
+
+    .lead,
+    .card .lead {
+      max-width: 290px;
+      margin: 18px auto 0;
+      color: #222;
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .actions {
+      width: 100%;
+      max-width: 260px;
+      gap: 12px;
+      margin: 86px auto 0;
+    }
+
+    .card .actions {
+      margin-top: 0;
+    }
+
+    .action-row {
+      width: 100%;
+      max-width: 260px;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .btn,
+    .btn.yellow,
+    .btn.dark,
+    .btn.light {
+      min-height: 52px;
+      border: 2px solid #111;
+      border-radius: 999px;
+      color: #111;
+      background: #fff;
+      font-size: 17px;
+      font-weight: 850;
+      box-shadow: none;
+    }
+
+    .btn:hover,
+    .btn.yellow:hover {
+      color: #fff;
+      background: #111;
+      transform: none;
+    }
+
+    .btn.small {
+      min-height: 44px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .phone {
+      width: 230px;
+      height: 350px;
+      margin-top: 4px;
+      border: 9px solid #050505;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .phone::before {
+      display: none;
+    }
+
+    .camera {
+      background: #fff;
+    }
+
+    .camera::after {
+      display: none;
+    }
+
+    .phone-frame {
+      inset: 0;
+      border: 0;
+      border-radius: 0;
+    }
+
+    .record-btn {
+      top: 146px;
+      min-width: 126px;
+      min-height: 36px;
+      border: 2px solid #ff5a68;
+      border-radius: 999px;
+      background: #fff;
+      color: #111;
+      font-size: 15px;
+      font-weight: 850;
+    }
+
+    .guide-cup {
+      bottom: -12px;
+      width: 160px;
+      height: 82px;
+      border: 2px dashed #111;
+      border-top: 0;
+      border-radius: 28px 28px 0 0;
+    }
+
+    .phone-copy {
+      left: 34px;
+      right: 34px;
+      bottom: 20px;
+      padding: 9px 10px;
+      border: 1px solid #e1e1e1;
+      border-radius: 999px;
+      background: #fff;
+      color: #111;
+      font-size: 8px;
+      line-height: 1.45;
+      font-weight: 800;
+    }
+
+    .rec-ui {
+      top: 20px;
+    }
+
+    .rec-ui span {
+      color: #111;
+      background: #fff;
+      border: 1px solid #111;
+    }
+
+    .rec-ui span::before {
+      background: var(--red);
+    }
+
+    .friend {
+      top: 60px;
+      width: 230px;
+      height: 230px;
+    }
+
+    .face {
+      width: 112px;
+      height: 126px;
+      border-width: 4px;
+      background: #f8f1df;
+    }
+
+    .hair {
+      width: 116px;
+      height: 52px;
+      border-width: 4px;
+    }
+
+    .cheek {
+      top: 82px;
+      width: 70px;
+      height: 58px;
+      border-width: 4px;
+    }
+
+    .cheek.left {
+      left: -54px;
+    }
+
+    .cheek.right {
+      right: -54px;
+    }
+
+    .face::before,
+    .face::after {
+      top: 63px;
+      width: 24px;
+      height: 15px;
+      border-width: 3px;
+    }
+
+    .face::before {
+      left: 18px;
+    }
+
+    .face::after {
+      right: 18px;
+    }
+
+    .mouth {
+      width: 30px;
+      height: 36px;
+      border-width: 4px;
+    }
+
+    .steam {
+      width: 188px;
+      height: 74px;
+    }
+
+    .steam i {
+      width: 30px;
+      height: 58px;
+      border-width: 3px;
+      filter: none;
+    }
+
+    .steam i:nth-child(2) {
+      left: 78px;
+    }
+
+    .cup-lid {
+      bottom: 42px;
+      width: 178px;
+      height: 84px;
+      border-width: 4px;
+      box-shadow: none;
+    }
+
+    .cup-lid::before {
+      top: 27px;
+      font-size: 26px;
+      text-shadow: none;
+    }
+
+    .cup-lid::after {
+      left: 92px;
+      top: 54px;
+      font-size: 13px;
+    }
+
+    .code-box,
+    .code-input {
+      width: 100%;
+      max-width: 280px;
+      border: 2px solid #111;
+      border-radius: 14px;
+      background: #fff;
+      color: #111;
+      box-shadow: none;
+    }
+
+    .code-box {
+      min-height: 68px;
+      margin: 6px 0 2px;
+      font-size: 31px;
+    }
+
+    .code-input {
+      margin-top: 8px;
+      font-size: 24px;
+    }
+
+    .toast {
+      color: #111;
+      font-size: 12px;
+    }
+
+    * {
+      box-shadow: none !important;
+      text-shadow: none !important;
+      filter: none !important;
+      backdrop-filter: none !important;
+    }
+
+    .screen:not([data-screen="home"]) .card {
+      width: min(330px, 100%);
+      padding: 28px 18px;
+      border: 1.5px solid #111;
+      border-radius: 16px;
+    }
+
+    .screen[data-screen="codeIssued"] .card,
+    .screen[data-screen="receiveIntro"] .card {
+      padding-top: 46px;
+      padding-bottom: 46px;
+    }
+
+    /* Restored event visual: keep Nongshim mall skin, borrow only the clean layout structure. */
+    .mall-header,
+    .event-top,
+    .map-bg,
+    .map-label,
+    .step-badge,
+    .heart-meter,
+    .notice,
+    .footer {
+      display: revert;
+    }
+
+    .mall-header {
+      display: block;
+    }
+
+    .page {
+      min-height: calc(100vh - 106px);
+      padding: 0;
+      background: #fff;
+    }
+
+    .event-wrap {
+      width: min(540px, 100%);
+      min-height: auto;
+      margin: 0 auto;
+      border-left: 1px solid #f0e7df;
+      border-right: 1px solid #f0e7df;
+      background: var(--stage);
+    }
+
+    .event-top {
+      display: block;
+      height: 126px;
+      background:
+        radial-gradient(circle at 78% 30%, rgba(255, 255, 255, .32) 0 7%, transparent 8%),
+        linear-gradient(135deg, #ff4b3f, #ef1d30);
+    }
+
+    .map-bg,
+    .map-label,
+    .step-badge,
+    .heart-meter,
+    .notice {
+      display: block;
+    }
+
+    .map-label,
+    .step-badge,
+    .heart-meter {
+      display: flex;
+    }
+
+    .notice {
+      display: grid;
+    }
+
+    .demo-stage {
+      min-height: 920px;
+      background:
+        linear-gradient(rgba(255, 255, 255, .78), rgba(255, 255, 255, .86)),
+        linear-gradient(180deg, #ffe2d9 0%, #fff7df 48%, #ffc4a4 100%);
+    }
+
+    .screen {
+      padding: 34px 30px 94px;
+      align-items: center;
+    }
+
+    .screen.dim {
+      background: rgba(0, 0, 0, .72);
+      color: #fff;
+    }
+
+    .transparent-card {
+      width: min(430px, 100%);
+      padding: 0;
+      color: #fff;
+    }
+
+    .card {
+      width: min(420px, 100%);
+      padding: 28px 24px;
+      border: 1px solid rgba(255, 255, 255, .78);
+      border-radius: 22px;
+      background: rgba(255, 253, 248, .98);
+      color: var(--ink);
+      display: block;
+    }
+
+    .screen:not([data-screen="home"]) .card {
+      width: min(420px, 100%);
+      padding: 28px 24px;
+      border: 1px solid rgba(255, 255, 255, .78);
+      border-radius: 22px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+    }
+
+    .reward {
+      display: block;
+    }
+
+    .progress-line {
+      display: flex;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 42px;
+      line-height: 1.08;
+      font-weight: 1000;
+    }
+
+    h1 .small-line {
+      font-size: inherit;
+      font-weight: inherit;
+    }
+
+    h1 .big-line {
+      display: inline;
+      margin-top: 0;
+      color: #fff;
+      font-size: inherit;
+      font-weight: inherit;
+      letter-spacing: 0;
+      transform: none;
+    }
+
+    h1 .small-line:first-child {
+      color: #ff343c;
+    }
+
+    h2 {
+      color: var(--red);
+      font-size: 31px;
+      line-height: 1.14;
+      font-weight: 1000;
+    }
+
+    .screen[data-screen="shootIntro"] h2,
+    .screen[data-screen="recording"] h2 {
+      color: var(--red);
+      font-size: 31px;
+    }
+
+    .lead {
+      max-width: none;
+      margin: 14px 0 0;
+      color: rgba(255, 255, 255, .88);
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 800;
+    }
+
+    .card .lead {
+      max-width: none;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      font-weight: 750;
+    }
+
+    .actions {
+      width: 100%;
+      max-width: none;
+      gap: 12px;
+      margin: 22px auto 0;
+    }
+
+    .transparent-card .actions {
+      margin-top: 34px;
+    }
+
+    .action-row {
+      max-width: none;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .btn,
+    .btn.yellow,
+    .btn.dark,
+    .btn.light {
+      min-height: 54px;
+      border: 2px solid #111;
+      border-radius: 14px;
+      font-size: 18px;
+      font-weight: 950;
+    }
+
+    .btn {
+      color: #fff;
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .btn.yellow {
+      color: #111;
+      background: var(--yellow);
+      border-color: var(--yellow);
+    }
+
+    .btn.dark {
+      color: #fff;
+      background: #171717;
+      border-color: #171717;
+    }
+
+    .btn.light {
+      color: var(--red);
+      background: #fff;
+      border-color: #f0b1b1;
+    }
+
+    .btn:hover,
+    .btn.yellow:hover {
+      transform: translateY(-1px);
+    }
+
+    .phone {
+      width: min(350px, 100%);
+      height: 560px;
+      margin: 18px auto 0;
+      border: 5px solid #17110f;
+      border-radius: 38px;
+      background: #2f2f2c;
+      overflow: hidden;
+    }
+
+    .phone::before {
+      display: block;
+    }
+
+    .camera {
+      background:
+        linear-gradient(115deg, rgba(255, 255, 255, .18), transparent 32%),
+        radial-gradient(circle at 50% 34%, rgba(255,255,255,.18), transparent 22%),
+        linear-gradient(135deg, #918f87, #57564f);
+    }
+
+    .camera::after {
+      display: block;
+    }
+
+    .phone-frame {
+      inset: 28px 22px 22px;
+      border: 3px solid rgba(17, 17, 17, .92);
+      border-radius: 34px 52px 38px 30px;
+    }
+
+    .record-btn {
+      top: 78px;
+      min-width: 152px;
+      min-height: 66px;
+      border: 3px solid #111;
+      border-radius: 8px;
+      color: #111;
+      background: rgba(255, 255, 255, .84);
+      font-size: 24px;
+    }
+
+    .guide-cup {
+      bottom: 88px;
+      width: 205px;
+      height: 96px;
+      border: 4px dashed rgba(17, 17, 17, .86);
+      border-top: 0;
+      border-radius: 24px 24px 42px 42px;
+    }
+
+    .phone-copy {
+      left: 34px;
+      right: 34px;
+      bottom: 58px;
+      padding: 8px 10px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .68);
+      color: #111;
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 950;
+    }
+
+    .friend {
+      top: 76px;
+      width: 292px;
+      height: 330px;
+      overflow: hidden;
+      border-radius: 24px;
+    }
+
+    .friend-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 48%;
+      display: block;
+    }
+
+    .screen[data-screen="recording"] .friend {
+      top: 96px;
+      height: 310px;
+    }
+
+    .screen[data-screen="arView"] .friend {
+      top: 76px;
+      height: 330px;
+    }
+
+    .screen[data-screen="arView"] .cup-lid {
+      bottom: 54px;
+      z-index: 6;
+    }
+
+    .code-box,
+    .code-input {
+      max-width: none;
+      border: 3px dashed rgba(229, 27, 35, .38);
+      border-radius: 16px;
+      background: #fff8dd;
+      color: var(--red);
+    }
+
+    .code-box {
+      min-height: 82px;
+      margin: 20px 0 8px;
+      font-size: 42px;
+    }
+
+    .code-input {
+      height: 66px;
+      margin-top: 22px;
+      border-style: solid;
+      color: #111;
+      background: #fff;
+      font-size: 30px;
+    }
+
+    .toast {
+      color: var(--red);
+      font-size: 14px;
+    }
+
+    .footer {
+      display: block;
+    }
+
+    .ar-phone {
+      aspect-ratio: 9 / 16;
+      width: 100%;
+      max-width: 392px;
+      height: auto;
+      border: 0;
+      border-radius: 0;
+      background: #f4f4f4;
+    }
+
+    .ar-phone::before,
+    .ar-phone .camera,
+    .ar-phone .camera::after,
+    .ar-phone .phone-frame {
+      display: none;
+    }
+
+    .ar-phone .friend {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      overflow: hidden;
+      animation: none;
+      transform: none;
+    }
+
+    .ar-phone .friend-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .screen[data-screen="recording"] .ar-phone .friend-photo {
+      object-position: center center;
+    }
+
+    .ar-phone .rec-ui {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: block;
+      pointer-events: none;
+    }
+
+    .ar-phone .rec-ui span {
+      position: absolute;
+      left: 50%;
+      top: 36px;
+      display: block;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      color: #111;
+      background: transparent;
+      font-size: 20px;
+      font-weight: 1000;
+      transform: translateX(-50%);
+    }
+
+    .ar-phone .rec-ui span::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin-right: 7px;
+      border-radius: 50%;
+      background: #ec0030;
+      vertical-align: 3px;
+    }
+
+    .ar-phone .rec-ui .btn {
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      bottom: 72px;
+      width: auto;
+      min-height: 82px;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      background: #ec0030;
+      font-size: 34px;
+      font-weight: 1000;
+      pointer-events: auto;
+    }
+
+    .ar-phone .guide-cup {
+      left: 50%;
+      bottom: 126px;
+      z-index: 4;
+      width: 86%;
+      height: 132px;
+      border: 0;
+      border-radius: 0;
+      background: url("assets/instr-guide.png") center top / 100% 100% no-repeat;
+      transform: translateX(-50%);
+    }
+
+    .ar-phone .guide-cup::before,
+    .screen[data-screen="shootIntro"] .guide-cup::before {
+      display: none;
+    }
+
+    .ar-phone .guide-cup::after,
+    .screen[data-screen="shootIntro"] .guide-cup::after {
+      display: none;
+    }
+
+    .ar-phone .phone-copy {
+      left: 13%;
+      right: 13%;
+      bottom: 147px;
+      z-index: 6;
+      padding: 15px 18px;
+      border: 0;
+      border-radius: 999px;
+      color: #111;
+      background: rgba(255, 255, 255, .52);
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+
+    .screen[data-screen="recording"] .card {
+      width: min(392px, 100%);
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .screen[data-screen="recording"] h2,
+    .screen[data-screen="recording"] .lead {
+      display: none;
+    }
+
+    .screen[data-screen="arView"] .ar-phone .friend {
+      inset: 0;
+      height: 100%;
+    }
+
+    .screen[data-screen="recording"] .ar-phone .friend {
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .screen[data-screen="arView"] .ar-phone .cup-lid {
+      left: 50%;
+      bottom: 42px;
+      z-index: 6;
+      width: 245px;
+      height: 118px;
+      transform: translateX(-50%) rotate(-2deg);
+    }
+
+    .screen[data-screen="arView"] .ar-phone .friend-photo {
+      object-position: center center;
+    }
+
+    .screen[data-screen="arView"] .card {
+      width: min(392px, 100%);
+      padding-bottom: 18px;
+    }
+
+    .screen[data-screen="home"] {
+      padding: 58px 28px 72px;
+      background: #7b7b78;
+      color: #fff;
+    }
+
+    .screen[data-screen="home"] .transparent-card {
+      display: grid;
+      min-height: 100%;
+      align-content: start;
+      justify-items: center;
+      width: 100%;
+      padding: 0;
+      color: #fff;
+    }
+
+    .home-intro {
+      margin: 0 0 28px;
+      color: #fff;
+      font-size: 23px;
+      line-height: 1.28;
+      font-weight: 950;
+      text-align: center;
+      word-break: keep-all;
+    }
+
+    .home-title {
+      display: grid;
+      justify-items: center;
+      gap: 0;
+      width: 100%;
+      margin: 0;
+      color: #fff;
+      line-height: .9;
+      text-align: center;
+    }
+
+    .title-image {
+      display: block;
+      width: min(430px, 100%);
+      height: auto;
+    }
+
+    .title-chip {
+      display: inline-block;
+      width: max-content;
+      max-width: 100%;
+      padding: 3px 14px 6px;
+      border-radius: 12px;
+      color: #fff;
+      background: #ec0030;
+      font-weight: 1000;
+      letter-spacing: -1px;
+      white-space: nowrap;
+    }
+
+    .chip-sm {
+      font-size: 40px;
+      transform: rotate(-1deg);
+    }
+
+    .chip-md {
+      margin-top: -2px;
+      font-size: 43px;
+      transform: rotate(1deg);
+    }
+
+    .chip-lg {
+      margin-top: -4px;
+      padding: 4px 16px 8px;
+      font-size: 62px;
+      letter-spacing: -3px;
+      transform: rotate(.5deg);
+    }
+
+    .screen[data-screen="home"] .lead {
+      max-width: 330px;
+      margin: 20px auto 0;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.42;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .screen[data-screen="home"] .actions {
+      display: grid;
+      width: min(360px, 100%);
+      max-width: 360px;
+      gap: 16px;
+      margin-top: auto;
+      padding-top: 210px;
+    }
+
+    .screen[data-screen="home"] .btn {
+      min-height: 70px;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      background: #ec0030;
+      font-size: 23px;
+      font-weight: 1000;
+    }
+
+    .screen[data-screen="home"] .btn.dark {
+      background: #000;
+    }
+
+    .demo-stage:has(.screen[data-screen="home"].active) .progress-line,
+    .demo-stage:has(.screen[data-screen="home"].active) .step-badge,
+    .demo-stage:has(.screen[data-screen="home"].active) .heart-meter,
+    .demo-stage:has(.screen[data-screen="home"].active) .map-label {
+      display: none;
+    }
+
+    .screen[data-screen="shootIntro"] {
+      padding: 0;
+      background: #111;
+    }
+
+    .screen[data-screen="shootIntro"] .camera-start {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      color: #fff;
+      background:
+        linear-gradient(rgba(0, 0, 0, .46), rgba(0, 0, 0, .46)),
+        url("assets/ready.png") center center / cover no-repeat;
+    }
+
+    .screen[data-screen="shootIntro"].counting .camera-start {
+      background:
+        linear-gradient(rgba(0, 0, 0, .46), rgba(0, 0, 0, .46)),
+        url("assets/friend-camera-preview.png") center center / cover no-repeat;
+    }
+
+    .camera-copy {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      top: 54px;
+      z-index: 3;
+      text-align: center;
+    }
+
+    .screen[data-screen="shootIntro"] .home-intro {
+      margin-bottom: 26px;
+      color: #fff;
+      font-size: 22px;
+      line-height: 1.25;
+      font-weight: 1000;
+    }
+
+    .screen[data-screen="shootIntro"] .home-title {
+      color: #fff;
+    }
+
+    .screen[data-screen="shootIntro"] .chip-sm {
+      font-size: 39px;
+    }
+
+    .screen[data-screen="shootIntro"] .chip-md {
+      font-size: 41px;
+    }
+
+    .screen[data-screen="shootIntro"] .chip-lg {
+      font-size: 61px;
+    }
+
+    .screen[data-screen="shootIntro"] .lead {
+      max-width: 330px;
+      margin: 18px auto 0;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.5;
+      font-weight: 950;
+    }
+
+    .screen[data-screen="shootIntro"] .guide-cup {
+      left: 50%;
+      bottom: 158px;
+      z-index: 3;
+      width: 86%;
+      height: 126px;
+      border: 0;
+      border-radius: 0;
+      background: url("assets/instr-guide.png") center top / 100% 100% no-repeat;
+      transform: translateX(-50%);
+    }
+
+    .screen[data-screen="shootIntro"] .phone-copy {
+      left: 15%;
+      right: 15%;
+      bottom: 192px;
+      z-index: 4;
+      padding: 15px 18px;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(255, 255, 255, .25);
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+
+    .record-start-main {
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      bottom: 72px;
+      z-index: 4;
+      min-height: 82px;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      background: #ec0030;
+      font-size: 34px;
+      font-weight: 1000;
+    }
+
+    .back-link {
+      position: absolute;
+      left: 50%;
+      bottom: 26px;
+      z-index: 4;
+      padding: 0;
+      color: #111;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 900;
+      transform: translateX(-50%);
+    }
+
+    .demo-stage:has(.screen[data-screen="shootIntro"].active) .progress-line,
+    .demo-stage:has(.screen[data-screen="shootIntro"].active) .step-badge,
+    .demo-stage:has(.screen[data-screen="shootIntro"].active) .heart-meter,
+    .demo-stage:has(.screen[data-screen="shootIntro"].active) .map-label,
+    .demo-stage:has(.screen[data-screen="shootIntro"].active) .notice {
+      display: none;
+    }
+
+    /* Campaign-only full-screen mode. Removes the old mall/game shell so the AR story owns the frame. */
+    .mall-header,
+    .event-top,
+    .footer {
+      display: none !important;
+    }
+
+    .page {
+      min-height: 100svh;
+      background: #fff;
+    }
+
+    .event-wrap {
+      width: min(489px, 100%);
+      min-height: 100svh;
+      border: 0;
+      background: #7b7b78;
+    }
+
+    .demo-stage {
+      height: 100svh;
+      min-height: 100svh;
+      overflow: hidden;
+      background: #7b7b78;
+    }
+
+    .screen {
+      min-height: 100svh;
+    }
+
+    .map-bg,
+    .map-label,
+    .step-badge,
+    .heart-meter,
+    .notice,
+    .progress-line {
+      display: none !important;
+    }
+
+    .screen[data-screen="recording"] {
+      padding: 0;
+      background: #fff;
+    }
+
+    .screen[data-screen="recording"] .card {
+      width: 100%;
+      height: 100svh;
+      max-width: none;
+    }
+
+    .screen[data-screen="recording"] .ar-phone {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      aspect-ratio: auto;
+      background: #fff;
+    }
+
+    .screen[data-screen="recording"] .ar-phone .friend-photo {
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .screen[data-screen="codeIssued"] .code-box {
+      margin: 20px 0 15px;
+    }
+
+    .screen[data-screen="codeIssued"] .action-row {
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .screen[data-screen="codeIssued"] .actions {
+      gap: 15px;
+      margin-top: 0;
+    }
+
+    .screen[data-screen="codeIssued"] #shareBtn,
+    .screen[data-screen="codeIssued"] #tiktokShareBtn {
+      color: #fff;
+      background: var(--red);
+      border-color: var(--red);
+    }
+
+    .screen[data-screen="receiveIntro"].dim {
+      background: #7b7b78;
+    }
+
+    .screen[data-screen="receiveIntro"] .card {
+      width: min(330px, calc(100% - 48px));
+      padding: 30px 16px 28px;
+      border: 0;
+      border-radius: 18px;
+      background: #fffdfa;
+    }
+
+    .screen[data-screen="receiveIntro"] h2 {
+      color: var(--red);
+      font-size: 24px;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .screen[data-screen="receiveIntro"] .lead {
+      display: none;
+    }
+
+    .screen[data-screen="receiveIntro"] .code-input {
+      height: 72px;
+      margin: 15px 0 0;
+      border: 1.5px solid #111;
+      border-radius: 9px;
+      color: #111;
+      background: #fff9ef;
+      font-size: 34px;
+      font-weight: 1000;
+      text-align: center;
+    }
+
+    .screen[data-screen="receiveIntro"] .actions {
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .screen[data-screen="receiveIntro"] .btn {
+      min-height: 54px;
+      border: 2px solid var(--red);
+      border-radius: 999px;
+      background: var(--red);
+      font-size: 17px;
+    }
+
+    .screen[data-screen="receiveIntro"] .btn.light {
+      color: var(--red);
+      background: #fff;
+    }
+
+    .screen[data-screen="scan"] {
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .scan-sequence {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .scan-frame {
+      position: absolute;
+      inset: 0;
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0;
+    }
+
+    .scan-frame.one {
+      background-image: url("assets/scan-frame-1.png");
+      opacity: 1;
+    }
+
+    .scan-frame.two {
+      background-image: url("assets/scan-frame-2.png");
+    }
+
+    .scan-frame.three {
+      background-image: url("assets/scan-frame-3.png");
+    }
+
+    .screen[data-screen="scan"].active .scan-frame {
+      animation: scanFade 7.2s ease-in-out forwards;
+    }
+
+    .screen[data-screen="scan"].active .scan-frame.two {
+      animation-name: scanFadeSecond;
+    }
+
+    .screen[data-screen="scan"].active .scan-frame.three {
+      animation-name: scanFadeFinal;
+    }
+
+    .scan-back {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      z-index: 5;
+      padding: 8px 12px;
+      color: #111;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 900;
+      transform: translateX(-50%);
+    }
+
+    @keyframes scanFade {
+      0%, 36% {
+        opacity: 1;
+      }
+      50%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes scanFadeSecond {
+      0%, 26% {
+        opacity: 0;
+      }
+      40%, 67% {
+        opacity: 1;
+      }
+      80%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes scanFadeFinal {
+      0%, 63% {
+        opacity: 0;
+      }
+      82%, 100% {
+        opacity: 1;
+      }
+    }
+
+    /* Nongshim mall shell restored, with the campaign screens staged inside the event frame. */
+    .mall-header {
+      display: block !important;
+    }
+
+    .event-top,
+    .footer {
+      display: block !important;
+    }
+
+    .page {
+      min-height: calc(100vh - 106px);
+      background: #fff;
+    }
+
+    .event-wrap {
+      width: min(540px, 100%);
+      min-height: auto;
+      border-left: 1px solid #f0e7df;
+      border-right: 1px solid #f0e7df;
+      background: var(--stage);
+    }
+
+    .event-top {
+      height: 220px;
+      background: url("assets/nongshim-game-bg.png") center 32% / cover no-repeat;
+    }
+
+    .event-top .pack,
+    .event-top::before,
+    .event-top::after {
+      display: none;
+    }
+
+    .demo-stage {
+      height: 920px;
+      min-height: 920px;
+      background: #7b7b78;
+    }
+
+    .screen {
+      min-height: 920px;
+    }
+
+    .screen.dim,
+    .screen[data-screen="home"],
+    .screen[data-screen="receiveIntro"].dim {
+      background:
+        linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)),
+        url("assets/nongshim-game-bg.png") center center / cover no-repeat;
+      background-blend-mode: multiply;
+    }
+
+    .screen[data-screen="scan"] {
+      min-height: 920px;
+      background: #000;
+    }
+
+    .screen[data-screen="scan"].active {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      min-height: 920px;
+      padding: 0;
+    }
+
+    .scan-frame.one {
+      background-image: url("assets/scan-raw-1.png");
+    }
+
+    .scan-frame.two {
+      background-image: url("assets/scan-raw-2.png");
+    }
+
+    .scan-frame.three {
+      background-image: url("assets/scan-raw-3.png");
+    }
+
+    .scan-frame.one,
+    .scan-frame.two,
+    .scan-frame.three {
+      background-size: cover;
+      background-position: center center;
+    }
+
+    .scan-instruction {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      animation: scanUiFade 7.2s ease-in-out forwards;
+    }
+
+    .scan-title {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      top: 58px;
+      color: #fff;
+      font-size: 24px;
+      line-height: 1.28;
+      font-weight: 1000;
+      text-align: center;
+    }
+
+    .scan-guide {
+      position: absolute;
+      left: 50%;
+      bottom: 142px;
+      width: 88%;
+      height: 190px;
+      background: url("assets/instr-guide.png") center top / 100% 100% no-repeat;
+      transform: translateX(-50%);
+    }
+
+    .scan-bubble {
+      position: absolute;
+      left: 16%;
+      right: 16%;
+      bottom: 235px;
+      padding: 16px 14px;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(255, 255, 255, .36);
+      font-size: 17px;
+      line-height: 1.35;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    @keyframes scanUiFade {
+      0%, 66% {
+        opacity: 1;
+      }
+      82%, 100% {
+        opacity: 0;
+      }
+    }
+
+    .screen[data-screen="scan"].active .scan-frame {
+      animation: scanPhotoOne 8.2s ease-in-out forwards;
+    }
+
+    .screen[data-screen="scan"].active .scan-frame.two {
+      animation-name: scanPhotoTwo;
+    }
+
+    .screen[data-screen="scan"].active .scan-frame.three {
+      animation-name: scanPhotoThree;
+    }
+
+    .scan-dim {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background: rgba(0, 0, 0, .6);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .screen[data-screen="scan"].active .scan-dim,
+    .screen[data-screen="scan"].active .scan-instruction {
+      animation: scanOverlayOut 8.2s ease-in-out forwards;
+    }
+
+    .scan-back {
+      left: 16px;
+      top: 16px;
+      bottom: auto;
+      z-index: 8;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(0, 0, 0, .28);
+      font-size: 26px;
+      line-height: 36px;
+      transform: none;
+    }
+
+    @keyframes scanPhotoOne {
+      0%, 32% {
+        opacity: 1;
+      }
+      42%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes scanPhotoTwo {
+      0%, 26% {
+        opacity: 0;
+      }
+      38%, 78% {
+        opacity: 1;
+      }
+      88%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes scanPhotoThree {
+      0%, 78% {
+        opacity: 0;
+      }
+      92%, 100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes scanOverlayOut {
+      0%, 58% {
+        opacity: 1;
+      }
+      74%, 100% {
+        opacity: 0;
+      }
+    }
+
+    .screen[data-screen="scan"].active .scan-frame.one {
+      animation: scanPhotoOneSlide 8.2s ease-in-out forwards;
+    }
+
+    .screen[data-screen="scan"].active .scan-frame.two {
+      animation: scanPhotoTwoHold 8.2s ease-in-out forwards;
+    }
+
+    .screen[data-screen="scan"].active .scan-frame.three {
+      animation: scanFriendReveal 8.2s ease-in-out forwards;
+      background-size: cover;
+      background-position: center center;
+      opacity: 1;
+      -webkit-mask-image: linear-gradient(to top, #000 0%, #000 72%, transparent 100%);
+      mask-image: linear-gradient(to top, #000 0%, #000 72%, transparent 100%);
+      -webkit-mask-position: bottom;
+      mask-position: bottom;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-size: 100% 0%;
+      mask-size: 100% 0%;
+    }
+
+    .roulette-btn {
+      position: absolute;
+      left: 7%;
+      right: 7%;
+      bottom: 72px;
+      z-index: 9;
+      min-height: 82px;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      background: #ec0030;
+      font-size: 34px;
+      font-weight: 1000;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .screen[data-screen="scan"].active .roulette-btn {
+      animation: rouletteBtnIn 8.2s ease-in-out forwards;
+    }
+
+    .roulette-modal {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      display: none;
+      place-items: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, .58);
+    }
+
+    .roulette-modal.open {
+      display: grid;
+    }
+
+    .roulette-dialog {
+      width: min(340px, 100%);
+      padding: 28px 18px;
+      border-radius: 18px;
+      background: #fffdfa;
+    }
+
+    .roulette-dialog .actions {
+      display: grid;
+      gap: 15px;
+      margin: 0;
+    }
+
+    .roulette-dialog .btn {
+      min-height: 58px;
+      border-radius: 999px;
+      font-size: 18px;
+    }
+
+    @keyframes scanPhotoOneSlide {
+      0%, 30% {
+        opacity: 1;
+      }
+      40%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes scanPhotoTwoHold {
+      0%, 24% {
+        opacity: 0;
+      }
+      36%, 100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes scanFriendReveal {
+      0%, 70% {
+        opacity: 1;
+        -webkit-mask-size: 100% 0%;
+        mask-size: 100% 0%;
+      }
+      88%, 100% {
+        opacity: 1;
+        -webkit-mask-size: 100% 140%;
+        mask-size: 100% 140%;
+      }
+    }
+
+    @keyframes rouletteBtnIn {
+      0%, 86% {
+        opacity: 0;
+        transform: translateY(18px);
+        pointer-events: none;
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: .25;
+      }
+    }
+
+    @keyframes steam {
+      0%, 100% {
+        opacity: .45;
+        transform: translateY(8px) scale(.95);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-8px) scale(1.05);
+      }
+    }
+
+    @keyframes wobble {
+      0%, 100% {
+        transform: translateX(-50%) rotate(-1deg);
+      }
+      50% {
+        transform: translateX(-50%) rotate(1.5deg);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-row {
+        grid-template-columns: 1fr auto;
+        min-height: 54px;
+      }
+
+      .search,
+      .nav-row,
+      .icons {
+        display: none;
+      }
+
+      .event-wrap {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .demo-stage {
+        min-height: 860px;
+      }
+
+      .screen {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      h1 {
+        font-size: 35px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .phone {
+        width: 326px;
+        height: 526px;
+      }
+
+      .map-label {
+        display: none;
+      }
+
+      .heart-meter {
+        left: 24px;
+        right: 24px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-row {
+        grid-template-columns: 112px 1fr auto;
+        gap: 8px;
+        width: calc(100% - 20px);
+      }
+
+      .search {
+        display: block;
+        width: 100%;
+      }
+
+      .search input {
+        height: 32px;
+        font-size: 12px;
+      }
+
+      .icons {
+        display: flex;
+        gap: 8px;
+        font-size: 18px;
+      }
+
+      .nav-row {
+        display: flex;
+        width: 100%;
+        min-height: 42px;
+        justify-content: flex-start;
+        gap: 18px;
+        padding: 0 12px;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      .nav-row .category,
+      .coupon {
+        margin: 0;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+    }
+
+    .screen[data-screen="recording"] {
+      padding: 0;
+      background: #111;
+    }
+
+    .screen[data-screen="recording"] .camera-start {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      color: #fff;
+      background:
+        linear-gradient(rgba(0, 0, 0, .46), rgba(0, 0, 0, .46)),
+        url("assets/friend-camera-preview.png") center center / cover no-repeat;
+    }
+
+    .screen[data-screen="recording"] .home-intro {
+      margin-bottom: 26px;
+      color: #fff;
+      font-size: 22px;
+      line-height: 1.25;
+      font-weight: 1000;
+    }
+
+    .screen[data-screen="recording"] .home-title {
+      color: #fff;
+    }
+
+    .screen[data-screen="recording"] .chip-sm {
+      font-size: 39px;
+    }
+
+    .screen[data-screen="recording"] .chip-md {
+      font-size: 41px;
+    }
+
+    .screen[data-screen="recording"] .chip-lg {
+      font-size: 61px;
+    }
+
+    .screen[data-screen="recording"] .lead {
+      display: block;
+      max-width: 330px;
+      margin: 18px auto 0;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1.5;
+      font-weight: 950;
+    }
+
+    .screen[data-screen="recording"] .guide-cup {
+      left: 50%;
+      bottom: 158px;
+      z-index: 3;
+      width: 86%;
+      height: 126px;
+      border: 0;
+      border-radius: 0;
+      background: url("assets/instr-guide.png") center top / 100% 100% no-repeat;
+      transform: translateX(-50%);
+    }
+
+    .screen[data-screen="recording"] .phone-copy {
+      left: 15%;
+      right: 15%;
+      bottom: 192px;
+      z-index: 4;
+      padding: 15px 18px;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(255, 255, 255, .25);
+      font-size: 18px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+
+    .screen[data-screen="recording"] .record-start-main {
+      color: #fff;
+      background: #ec0030;
+    }
+
+    .screen[data-screen="shootIntro"] .camera-copy {
+      display: none;
+    }
+
+    .screen[data-screen="recording"] .recording-view {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .screen[data-screen="recording"] .recording-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .recording-rec {
+      position: absolute;
+      left: 50%;
+      top: 44px;
+      z-index: 7;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #111;
+      font-size: 20px;
+      line-height: 1;
+      font-weight: 1000;
+      transform: translateX(-50%);
+    }
+
+    .rec-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ec0030;
+      animation: recBlink .8s steps(2, start) infinite;
+    }
+
+    @keyframes recBlink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .screen[data-screen="shootIntro"] .countdown {
+      display: none;
+    }
+
+    .screen[data-screen="shootIntro"].counting .camera-copy,
+    .screen[data-screen="shootIntro"].counting .guide-cup,
+    .screen[data-screen="shootIntro"].counting .phone-copy,
+    .screen[data-screen="shootIntro"].counting .record-start-main,
+    .screen[data-screen="shootIntro"].counting .back-link {
+      display: none;
+    }
+
+    .screen[data-screen="shootIntro"].counting .countdown {
+      display: grid;
+    }
+
+    .countdown {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      display: grid;
+      place-items: center;
+      pointer-events: none;
+    }
+
+    .countdown span {
+      position: absolute;
+      color: #fff;
+      font-size: 148px;
+      line-height: 1;
+      font-weight: 1000;
+      opacity: 0;
+      transform: scale(.72);
+    }
+
+    .screen[data-screen="shootIntro"].active.counting .countdown span {
+      animation: countPop 1s ease-in-out forwards;
+    }
+
+    .screen[data-screen="shootIntro"].active.counting .countdown span:nth-child(2) {
+      animation-delay: 1s;
+    }
+
+    .screen[data-screen="shootIntro"].active.counting .countdown span:nth-child(3) {
+      animation-delay: 2s;
+    }
+
+    @keyframes countPop {
+      0% {
+        opacity: 0;
+        transform: scale(.72);
+      }
+      18%, 78% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.18);
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="mall-header">
+    <div class="header-row">
+      <div class="logo">농심·mall</div>
+      <label class="search" aria-label="검색">
+        <input placeholder="검색어를 입력해주세요.">
+        <span>⌕</span>
+      </label>
+      <div class="icons" aria-hidden="true">
+        <span>♧</span>
+        <span>♡</span>
+        <span>⌑</span>
+      </div>
+    </div>
+    <nav class="nav-row" aria-label="농심몰 메뉴">
+      <span class="category">☰ 카테고리</span>
+      <span>농구</span>
+      <span>굿즈</span>
+      <span>핫딜</span>
+      <span>이벤트</span>
+      <span>베스트</span>
+      <span>정기구독</span>
+      <span>라운지</span>
+      <span>쿠폰혜택</span>
+      <span class="coupon">신규가입시 최대 7천원 쿠폰</span>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="landing-image-section" aria-label="캠페인 소개">
+      <img src="assets/hero.png" alt="육개장 AR 캠페인 소개">
+    </section>
+
+    <section class="event-wrap" aria-label="육개장 AR 시연">
+      <div class="demo-stage" id="demoStage">
+        <div class="map-bg" aria-hidden="true"></div>
+        <div class="map-label one">1 GUEST님</div>
+        <div class="map-label two">? 확인하기</div>
+        <div class="map-label three">≡ 추가미션</div>
+        <div class="map-label four">레벨 보상</div>
+
+        <div class="step-badge" aria-live="polite">
+          <strong id="stepNumber">1</strong>
+          <span id="stepTitle">시작</span>
+        </div>
+
+        <div class="heart-meter" aria-hidden="true">
+          <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+          <span id="meterText">다음 단계까지 하트 남았어요</span>
+        </div>
+
+        <div class="notice"><span>ⓘ 유의사항 펼쳐보기⌄</span></div>
+
+        <section class="screen dim active" data-screen="home">
+          <div class="transparent-card">
+            <p class="home-intro">친구의 육개장에 장난치고<br>공유해보세요!<br>맛있는 선물들이 팡팡!</p>
+            <h1 class="home-title">
+              <img class="title-image" src="assets/title.png" alt="호호불면 우정이 커지는 맛있는 육개장">
+            </h1>
+            <p class="lead">AR 필터로 친구랑 장난치고 같이 육개장먹자!</p>
+            <div class="actions">
+              <button class="btn" data-go="shootIntro">AR 영상 촬영하기</button>
+              <button class="btn dark" data-go="receiveIntro">친구가 보낸 코드 확인하기</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="shootIntro">
+          <div class="camera-start">
+            <div class="camera-copy">
+              <p class="home-intro">친구의 육개장에 장난치고<br>공유해보세요!<br>맛있는 선물들이 팡팡!</p>
+              <h1 class="home-title">
+                <img class="title-image" src="assets/title.png" alt="호호불면 우정이 커지는 맛있는 육개장">
+              </h1>
+              <p class="lead">AR 필터로 친구에게 장난치고<br>같이 육개장 먹자!</p>
+            </div>
+            <div class="guide-cup"></div>
+            <div class="phone-copy">친구가 먹을 육개장에<br>재미있는 장난을 토핑으로 추가해보세요</div>
+            <button class="btn record-start-main" id="startCountdownBtn">촬영 시작</button>
+            <button class="back-link" data-go="home">← 돌아가기</button>
+            <div class="countdown" aria-label="촬영 카운트다운">
+              <span>3</span>
+              <span>2</span>
+              <span>1</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="recording">
+          <div class="recording-view">
+            <img class="recording-bg" src="assets/friend-recording-full.png" alt="친구들이 육개장에 후후 부는 녹화 예시">
+            <div class="recording-rec"><span class="rec-dot"></span> REC <span id="recTimer">00:00</span></div>
+            <div class="guide-cup"></div>
+            <div class="phone-copy">친구가 먹을 육개장에<br>재미있는 장난을 토핑으로 추가해보세요</div>
+            <button class="btn record-start-main" data-go="codeIssued">녹화완료</button>
+          </div>
+        </section>
+
+        <section class="screen dim" data-screen="codeIssued">
+          <div class="card">
+            <h2>AR 코드가<br>생성됐어요</h2>
+            <p class="lead">친구에게 이 코드를 보내면, 친구가 육개장을 스캔해서 영상을 볼 수 있습니다.</p>
+            <div class="code-box" id="codeBox">HOOH0127</div>
+            <div class="action-row">
+              <button class="btn small" id="shareBtn">인스타그램 공유</button>
+              <button class="btn small" id="tiktokShareBtn">틱톡 공유</button>
+            </div>
+            <div class="actions">
+              <button class="btn dark" id="copyBtn">코드 복사하기</button>
+              <button class="btn light small" data-go="home">처음으로</button>
+            </div>
+            <div class="toast" id="codeToast"></div>
+          </div>
+        </section>
+
+        <section class="screen dim" data-screen="receiveIntro">
+          <div class="card">
+            <h2>코드를 입력해주세요</h2>
+            <input class="code-input" id="codeInput" maxlength="8" value="HOHO2026" aria-label="AR 코드 입력">
+            <div class="actions">
+              <button class="btn" data-go="scan">입력완료</button>
+              <button class="btn light small" data-go="home">처음으로</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="scan">
+          <div class="scan-sequence" aria-label="육개장 스캔 후 친구 영상이 나타나는 예시">
+            <div class="scan-frame one" aria-hidden="true"></div>
+            <div class="scan-frame two" aria-hidden="true"></div>
+            <div class="scan-frame three" aria-hidden="true"></div>
+            <div class="scan-dim" aria-hidden="true"></div>
+            <div class="scan-instruction" aria-hidden="true">
+              <div class="scan-title">카메라를 조정해서<br>육개장을 촬영해보세요!<br>친구가 보낸 영상이 나타납니다.</div>
+              <div class="scan-guide"></div>
+              <div class="scan-bubble">이곳에 육개장이 들어오도록<br>카메라를 조정해주세요</div>
+            </div>
+            <button class="scan-back" data-go="receiveIntro" aria-label="돌아가기">←</button>
+            <button class="roulette-btn" id="rouletteCouponBtn">룰렛 쿠폰 받기</button>
+            <div class="roulette-modal" id="rouletteModal" role="dialog" aria-modal="true" aria-label="룰렛 쿠폰 안내">
+              <div class="roulette-dialog">
+                <div class="actions">
+                  <button class="btn light small" id="modalHomeBtn">처음으로</button>
+                  <button class="btn" id="rouletteTopBtn">룰렛 돌리러가기</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="arView">
+          <div class="card">
+            <h2>육개장 인식 완료!<br>친구 영상이 떠요</h2>
+            <p class="lead">친구가 녹화한 장난 영상이 친구2가 먹으려는 육개장 위에 재생되는 예시입니다.</p>
+            <div class="phone ar-phone" aria-label="AR 영상 재생 예시">
+              <div class="camera"></div>
+              <div class="phone-frame"></div>
+              <div class="friend">
+                <img class="friend-photo" src="assets/friend-blowing-ar.png" alt="친구들이 육개장에 후후 부는 AR 영상 예시">
+              </div>
+              <div class="cup-lid"></div>
+            </div>
+            <div class="actions">
+              <button class="btn yellow" data-go="home">다시 시연하기</button>
+            </div>
+          </div>
+        </section>
+
+        <div class="progress-line" aria-hidden="true">
+          <span class="dot on"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="landing-image-section" aria-label="유의사항">
+      <img src="assets/notice.png" alt="캠페인 유의사항">
+    </section>
+
+    <footer class="footer">
+      호스팅제공자: 카페24 | 농심몰 문의: nsmall2022@naver.com | 고객센터: 1533-0658<br>
+      COPYRIGHT © 농심몰. ALL RIGHTS RESERVED.
+    </footer>
+  </main>
+
+  <script>
+    const screens = [...document.querySelectorAll("[data-screen]")];
+    const dots = [...document.querySelectorAll(".dot")];
+    const stepNumber = document.getElementById("stepNumber");
+    const stepTitle = document.getElementById("stepTitle");
+    const barFill = document.getElementById("barFill");
+    const meterText = document.getElementById("meterText");
+    const codeInput = document.getElementById("codeInput");
+    const codeBox = document.getElementById("codeBox");
+    const codeToast = document.getElementById("codeToast");
+    const shootIntroScreen = document.querySelector('[data-screen="shootIntro"]');
+    const recTimer = document.getElementById("recTimer");
+    const rouletteModal = document.getElementById("rouletteModal");
+    let toastTimer = null;
+    let countdownTimer = null;
+    let recTimerHandle = null;
+
+    const demoCode = "HOOH0127";
+    const stateMeta = {
+      home: ["1", "시작", 18, "시작할 방식을 선택해주세요"],
+      shootIntro: ["2", "촬영 안내", 32, "친구 컵에 들어갈 장난 준비"],
+      recording: ["3", "녹화", 48, "후후 불며 영상 녹화 중"],
+      codeIssued: ["4", "코드 생성", 64, "친구에게 보낼 코드 발급"],
+      receiveIntro: ["5", "코드 입력", 78, "친구가 받은 코드 등록"],
+      scan: ["6", "육개장 스캔", 90, "컵을 화면에 맞추는 중"],
+      arView: ["7", "AR 재생", 100, "친구 영상이 컵 위에 등장"]
+    };
+
+    function showScreen(name) {
+      showToast("");
+      window.clearTimeout(countdownTimer);
+      window.clearInterval(recTimerHandle);
+      shootIntroScreen.classList.remove("counting");
+      rouletteModal?.classList.remove("open");
+
+      screens.forEach((screen) => {
+        screen.classList.toggle("active", screen.dataset.screen === name);
+      });
+
+      const [num, title, progress, meter] = stateMeta[name];
+      stepNumber.textContent = num;
+      stepTitle.textContent = title;
+      barFill.style.width = `${progress}%`;
+      meterText.textContent = meter;
+
+      const current = Math.min(dots.length - 1, Math.max(0, Number(num) - 1));
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("on", index <= current);
+      });
+
+      if (name === "codeIssued") {
+        codeBox.textContent = demoCode;
+        codeInput.value = demoCode;
+      }
+
+      if (name === "receiveIntro") {
+        codeInput.value = "HOHO2026";
+      }
+
+      if (name === "recording") {
+        startRecTimer();
+      }
+    }
+
+    function startCountdown() {
+      window.clearTimeout(countdownTimer);
+      shootIntroScreen.classList.add("counting");
+      countdownTimer = window.setTimeout(() => {
+        showScreen("recording");
+      }, 4000);
+    }
+
+    function startRecTimer() {
+      let seconds = 0;
+      recTimer.textContent = "00:00";
+      recTimerHandle = window.setInterval(() => {
+        seconds += 1;
+        recTimer.textContent = `00:0${Math.min(seconds, 5)}`;
+        if (seconds >= 5) {
+          window.clearInterval(recTimerHandle);
+        }
+      }, 1000);
+    }
+
+    function showToast(message) {
+      window.clearTimeout(toastTimer);
+      codeToast.textContent = message;
+
+      if (message) {
+        toastTimer = window.setTimeout(() => {
+          codeToast.textContent = "";
+        }, 3000);
+      }
+    }
+
+    async function copyText(text) {
+      try {
+        if (navigator.clipboard) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        }
+      } catch (error) {
+        // Fall back for local file previews where clipboard permission can be blocked.
+      }
+
+      const helper = document.createElement("textarea");
+      helper.value = text;
+      helper.setAttribute("readonly", "");
+      helper.style.position = "fixed";
+      helper.style.left = "-9999px";
+      document.body.appendChild(helper);
+      helper.select();
+      const copied = document.execCommand("copy");
+      helper.remove();
+      return copied;
+    }
+
+    document.addEventListener("click", async (event) => {
+      if (event.target.id === "startCountdownBtn") {
+        startCountdown();
+        return;
+      }
+
+      if (event.target.id === "rouletteCouponBtn") {
+        rouletteModal?.classList.add("open");
+        return;
+      }
+
+      if (event.target.id === "modalHomeBtn") {
+        rouletteModal?.classList.remove("open");
+        showScreen("home");
+        return;
+      }
+
+      if (event.target.id === "rouletteTopBtn") {
+        rouletteModal?.classList.remove("open");
+        showScreen("home");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      if (event.target.id === "rouletteModal") {
+        rouletteModal?.classList.remove("open");
+        return;
+      }
+
+      const goButton = event.target.closest("[data-go]");
+      if (goButton) {
+        showScreen(goButton.dataset.go);
+      }
+
+      if (event.target.id === "copyBtn") {
+        const copied = await copyText(demoCode);
+        showToast(copied ? `${demoCode} 코드가 복사됐어요.` : `${demoCode} 코드를 친구에게 보내주세요.`);
+      }
+
+      if (event.target.id === "shareBtn" || event.target.id === "tiktokShareBtn") {
+        showToast("프로토타입에서 사용불가한 기능입니다.");
+      }
+    });
+
+    codeInput.addEventListener("input", () => {
+      codeInput.value = codeInput.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 8);
+    });
+  </script>
+</body>
+</html>
