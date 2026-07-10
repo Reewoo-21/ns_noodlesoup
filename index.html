@@ -145,6 +145,7 @@
     }
 
     .landing-image-section {
+      position: relative;
       width: min(540px, 100%);
       margin: 0 auto;
       background: #fff;
@@ -154,6 +155,96 @@
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    .hero-roulette-button {
+      position: absolute;
+      left: 21%;
+      right: 21%;
+      bottom: 7.1%;
+      z-index: 2;
+      min-height: clamp(54px, 10.5vw, 76px);
+      border-radius: 18px;
+      color: #111;
+      background: rgba(12, 75, 122, .02);
+      font-size: clamp(15px, 4vw, 21px);
+      font-weight: 1000;
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    .hero-roulette-button span {
+      display: block;
+      color: transparent;
+    }
+
+    .hero-ticket-text {
+      position: absolute;
+      left: 21%;
+      right: 21%;
+      bottom: 8.9%;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      min-height: clamp(42px, 8.4vw, 58px);
+      pointer-events: none;
+      color: #fff;
+      font-size: clamp(15px, 4vw, 21px);
+      font-weight: 1000;
+      text-align: center;
+      text-shadow:
+        -2px -2px 0 #fff,
+        2px -2px 0 #fff,
+        -2px 2px 0 #fff,
+        2px 2px 0 #fff;
+    }
+
+    .ticket-count {
+      color: #df0029;
+    }
+
+    .hero-roulette-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1001;
+      display: none;
+      place-items: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, .62);
+    }
+
+    .hero-roulette-modal.open {
+      display: grid;
+    }
+
+    .hero-roulette-dialog {
+      width: min(360px, 100%);
+      padding: 30px 22px 22px;
+      border-radius: 22px;
+      background: #fffdf8;
+      color: #111;
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, .08);
+    }
+
+    .hero-roulette-dialog h2 {
+      color: var(--red);
+      font-size: 28px;
+      line-height: 1.18;
+    }
+
+    .hero-roulette-dialog p {
+      margin-top: 14px;
+      color: #3d3530;
+      font-size: 17px;
+      line-height: 1.45;
+      font-weight: 850;
+    }
+
+    .hero-roulette-dialog .btn {
+      width: 100%;
+      margin-top: 22px;
+      border-radius: 999px;
     }
 
     main.page > .footer {
@@ -2984,9 +3075,24 @@
   </header>
 
   <main class="page">
-    <section class="landing-image-section" aria-label="캠페인 소개">
+    <section class="landing-image-section hero-section" aria-label="캠페인 소개">
       <img src="assets/hero.png" alt="육개장 AR 캠페인 소개">
+      <button class="hero-roulette-button" id="heroRouletteBtn" aria-label="룰렛 돌리기 보유 티켓 0개">
+        <span>룰렛 돌리기 보유 티켓 [ 0 ] 개</span>
+      </button>
+      <div class="hero-ticket-text" aria-hidden="true">
+        <div>룰렛 돌리기</div>
+        <div>보유 티켓 <span class="ticket-count">[ 0 ]</span> 개</div>
+      </div>
     </section>
+
+    <div class="hero-roulette-modal" id="heroRouletteModal" role="dialog" aria-modal="true" aria-label="룰렛 티켓 안내">
+      <div class="hero-roulette-dialog">
+        <h2>보유 티켓이 없어요</h2>
+        <p>코드를 입력하고 친구가 보낸 AR 영상을 확인하면 룰렛 티켓을 받을 수 있어요.</p>
+        <button class="btn" id="heroRouletteClose">확인</button>
+      </div>
+    </div>
 
     <section class="event-wrap" aria-label="육개장 AR 시연">
       <div class="demo-stage" id="demoStage">
@@ -3157,6 +3263,7 @@
     const shootIntroScreen = document.querySelector('[data-screen="shootIntro"]');
     const recTimer = document.getElementById("recTimer");
     const rouletteModal = document.getElementById("rouletteModal");
+    const heroRouletteModal = document.getElementById("heroRouletteModal");
     let toastTimer = null;
     let countdownTimer = null;
     let recTimerHandle = null;
@@ -3264,6 +3371,16 @@
     document.addEventListener("click", async (event) => {
       if (event.target.id === "startCountdownBtn") {
         startCountdown();
+        return;
+      }
+
+      if (event.target.closest("#heroRouletteBtn")) {
+        heroRouletteModal?.classList.add("open");
+        return;
+      }
+
+      if (event.target.id === "heroRouletteClose" || event.target.id === "heroRouletteModal") {
+        heroRouletteModal?.classList.remove("open");
         return;
       }
 
